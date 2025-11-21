@@ -1,7 +1,11 @@
 export default function Log({ gameTurns }) {
-  return <ol id="log">
-    {gameTurns.map((turn, turnIndex) => (
-        <li key={turnIndex}>Move {turnIndex + 1}. {turn.player} plays col {turn.square.col}, row {turn.square.row}</li>
-    ))}
-  </ol>;
+  return (
+    <ol id="log">
+      {gameTurns.map((turn) => (
+        <li key={`${turn.square.row}${turn.square.col}`}>
+          {turn.player} selected row {turn.square.row}, col {turn.square.col}
+        </li>
+      ))}
+    </ol>
+  );
 }

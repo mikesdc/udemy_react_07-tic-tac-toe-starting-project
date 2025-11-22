@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-export default function Player({ initialName, symbol, isActive }) {
+export default function Player({
+  initialName,
+  symbol,
+  isActive,
+  onChangeName,
+}) {
   const [playerName, setPlayerName] = useState(initialName);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -8,10 +13,13 @@ export default function Player({ initialName, symbol, isActive }) {
     // setIsEditing(!isEditing);
     // Note, when updating state based on a previous state value, use a function form, as shown below, instead of the code above.
     setIsEditing((editing) => !editing);
+
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
   }
 
   function handleChange(event) {
-    // console.log(event);
     setPlayerName(event.target.value);
   }
 
